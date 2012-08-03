@@ -23,7 +23,7 @@ class DecoratorTagLib {
     def decorate = {attrs, body->
 
         // Get the markup to decorate.
-        def markup = body()
+        def markup = body().toString().trim()
 
         // Exclude any decorators?
         def exclude = (attrs.exclude ?: grailsApplication.config.decorator.exclude) ?: []
