@@ -20,7 +20,7 @@ import grails.spring.BeanBuilder
 
 class DecoratorGrailsPlugin {
     // the plugin version
-    def version = "0.1"
+    def version = "0.2"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "1.3 > *"
     // the other plugins this plugin depends on
@@ -39,7 +39,19 @@ class DecoratorGrailsPlugin {
     def author = "Goran Ehrsson"
     def authorEmail = "goran@technipelago.se"
     def description = '''\
-Use pluggable decorators to modify markup in GSP pages.
+<p>Use pluggable decorators to modify markup in GSP pages.</p>
+
+<p>Examples</p>
+
+<p><strong>Abbreviation decorator</strong></p>
+<pre><g:decorate max="20">The quick brown fox jumps over the lazy dog</g:decorate></pre>
+<p>The quick brown f...</p>
+
+<p><strong>URL decorator</strong></p>
+<pre><g:decorate>www.grails.org</g:decorate></pre>
+<p>&lt;a href="http://www.grails.org">www.grails.org&lt;/a></p>
+
+<p>Custom decorator artefacts can be placed in grails-app/decorators</p>
 '''
 
     // URL to the plugin's documentation

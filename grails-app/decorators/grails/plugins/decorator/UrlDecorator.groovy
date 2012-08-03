@@ -21,7 +21,18 @@ import java.util.regex.Matcher
 class UrlDecorator {
 
     String decorate(String markup, Map params) {
-        hyperlinkText(markup, params.target)
+        hyperlinkText1(markup, params.target)
+    }
+
+    private static final Pattern regex = Pattern.compile("\\(?\\b(http[s]?://|www[.])[-A-Za-z0-9+&@#/%?=~_()|!:,.;]*[-A-Za-z0-9+&@#/%=~_()|]")
+
+    private String hyperlinkText1(String text, String target) {
+        def targetText = (StringUtils.isBlank(target)) ? "" : " target=\"" + target.trim() + "\""
+
+        text.replaceAll(regex) {s, scheme->
+            def url = scheme.startsWith('http') ? s : 'http://' + s
+            '<a href="' + url + '"' + targetText + '>' + s + '</a>'
+        }
     }
 
     // NOTES:   1) \w includes 0-9, a-z, A-Z, _
@@ -71,7 +82,7 @@ class UrlDecorator {
      * @param _rawText - if <code>null</code>, returns <code>""</code> (empty string).
      * @param _target - if not <code>null</code> or <code>""</code>, adds a target attributed to the generated link, using _target as the attribute value.
      */
-    private String hyperlinkText(final String _rawText, final String _target) {
+    private String hyperlinkText2(final String _rawText, final String _target) {
 
         String returnValue
 
