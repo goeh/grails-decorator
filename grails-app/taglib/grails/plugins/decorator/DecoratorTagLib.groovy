@@ -25,6 +25,11 @@ class DecoratorTagLib {
         // Get the markup to decorate.
         def markup = body().toString().trim()
 
+        // Encode output?
+        if(attrs.encode) {
+            markup = markup."encodeAs${attrs.encode}"()
+        }
+
         // Exclude any decorators?
         def exclude = (attrs.exclude ?: grailsApplication.config.decorator.exclude) ?: []
         if(exclude && !(exclude instanceof Collection)) {
@@ -45,11 +50,6 @@ class DecoratorTagLib {
         for(dc in include) {
             def decorator = grailsApplication.mainContext.getBean(dc + 'Decorator')
             markup = decorator.decorate(markup, attrs)
-        }
-
-        // Encode output?
-        if(attrs.encode) {
-            markup = markup."encodeAs${attrs.encode}"()
         }
 
         // Render final markup.
