@@ -20,7 +20,7 @@ import grails.spring.BeanBuilder
 
 class DecoratorGrailsPlugin {
     // the plugin version
-    def version = "0.4"
+    def version = "0.5"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "1.3 > *"
     // the other plugins this plugin depends on
@@ -29,6 +29,7 @@ class DecoratorGrailsPlugin {
     def pluginExcludes = [
         "grails-app/views/error.gsp"
     ]
+    def loadAfter = ['logging']
     def watchedResources = [
             "file:./grails-app/decorators/**/*Decorator.groovy",
             "file:./plugins/*/grails-app/decorators/**/*Decorator.groovy"

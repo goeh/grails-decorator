@@ -22,6 +22,15 @@ class DecoratorTagLibTests extends GroovyPagesTestCase {
 
     def grailsApplication
 
+    void testInstalledClasses() {
+        def list = grailsApplication.decoratorClasses*.propertyName
+        assert list.contains('abbreviateDecorator')
+        assert list.contains('jiraDecorator')
+        assert list.contains('markdownDecorator')
+        assert list.contains('telephoneDecorator')
+        assert list.contains('urlDecorator')
+    }
+
     void testEmptyBody() {
         assert applyTemplate('<g:decorate></g:decorate>') == ""
     }

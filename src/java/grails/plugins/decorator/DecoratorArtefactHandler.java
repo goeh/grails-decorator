@@ -27,7 +27,6 @@ import java.util.Map;
  */
 class DecoratorArtefactHandler extends ArtefactHandlerAdapter {
 
-
     public DecoratorArtefactHandler() {
         super(GrailsDecoratorClass.TYPE, GrailsDecoratorClass.class, DefaultGrailsDecoratorClass.class, null);
     }
