@@ -15,14 +15,26 @@
  */
 package grails.plugins.decorator
 
+import java.util.regex.Pattern
+
 class JiraDecorator {
 
     def grailsApplication
 
+    private static final Pattern PATTERN = ~/([A-Z0-9_]+)\-(\d{1,5})/
+
+    Map projects = null
+
     String decorate(String markup, Map params) {
-        def config = grailsApplication.config.decorator.jira
-        markup.replaceAll(/([A-Z0-9_]+)\-(\d{1,5})/){s, project, id ->
-            def url = config[project]
+        if (projects == null) {
+            synchronized (this) {
+                if (projects == null) {
+                    projects = grailsApplication.config.decorator.jira ?: [:]
+                }
+            }
+        }
+        markup.replaceAll(PATTERN) { s, project, id ->
+            def url = projects[project]
             return url ? "<a href=\"$url/$s\">$s</a>" : s
         }
     }

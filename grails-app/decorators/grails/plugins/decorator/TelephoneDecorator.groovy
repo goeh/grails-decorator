@@ -15,11 +15,15 @@
  */
 package grails.plugins.decorator
 
+import java.util.regex.Pattern
+
 class TelephoneDecorator {
 
+    private static final Pattern PATTERN = ~/([:\s])(0\d{1,4}[\s\-]+[\d\s]{5,16}\d)/
+
     String decorate(String markup, Map params) {
-        markup.replaceAll(/[\d\s\-\(\)]{8,20}/) {s ->
-            '<a href="tel:' + s.replaceAll(/\D/, '') + '">' + s + '</a>'
+        markup.replaceAll(PATTERN) {s, prefix, nbr ->
+            prefix + '<a href="tel:' + nbr.replaceAll(/\D/, '') + '">' + nbr + '</a>'
         }
     }
 }

@@ -17,10 +17,17 @@
 package grails.plugins.decorator
 
 import grails.test.GroovyPagesTestCase
+import org.junit.Before
 
 class DecoratorTagLibTests extends GroovyPagesTestCase {
 
     def grailsApplication
+
+    @Before
+    void setupConfiguration() {
+        grailsApplication.config.decorator.jira.GRAILS = "http://jira.grails.org/browse"
+        grailsApplication.config.decorator.jira.GROOVY = "http://jira.codehaus.org/browse"
+    }
 
     void testInstalledClasses() {
         def list = grailsApplication.decoratorClasses*.propertyName
@@ -46,16 +53,15 @@ class DecoratorTagLibTests extends GroovyPagesTestCase {
     }
 
     void testJira() {
-        grailsApplication.config.decorator.jira.GRAILS = "http://jira.grails.org/browse"
-        grailsApplication.config.decorator.jira.GROOVY = "http://jira.codehaus.org/browse"
-
         assert applyTemplate('<g:decorate exclude="url">I think GRAILS-1234 is related to GROOVY-666.</g:decorate>') == '<p>I think <a href="http://jira.grails.org/browse/GRAILS-1234">GRAILS-1234</a> is related to <a href="http://jira.codehaus.org/browse/GROOVY-666">GROOVY-666</a>.</p>'
     }
 
     void testTelephone() {
-        assert applyTemplate('<g:decorate>(555) 555-1234</g:decorate>') == '<p><a href="tel:5555551234">(555) 555-1234</a></p>'
-        assert applyTemplate('<g:decorate>055-1234567</g:decorate>') == '<p><a href="tel:0551234567">055-1234567</a></p>'
-        assert applyTemplate('<g:decorate>55 66 77 88</g:decorate>') == '<p><a href="tel:55667788">55 66 77 88</a></p>'
+        assert applyTemplate('<g:decorate>Tel: 08-123456</g:decorate>') == '<p>Tel: <a href="tel:08123456">08-123456</a></p>'
+        assert applyTemplate('<g:decorate>H 055-1234567</g:decorate>') == '<p>H <a href="tel:0551234567">055-1234567</a></p>'
+        assert applyTemplate('<g:decorate>CC 1055-1234567</g:decorate>') == '<p>CC 1055-1234567</p>'
+        assert applyTemplate('<g:decorate>W 31 55 66 77 88</g:decorate>') == '<p>W 31 55 66 77 88</p>'
+        assert applyTemplate('<g:decorate>Phone:031 55 66 77 88</g:decorate>') == '<p>Phone:<a href="tel:03155667788">031 55 66 77 88</a></p>'
     }
 
     void testUrl() {
