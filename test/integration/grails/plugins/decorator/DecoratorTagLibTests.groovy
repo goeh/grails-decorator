@@ -69,4 +69,9 @@ class DecoratorTagLibTests extends GroovyPagesTestCase {
         assert applyTemplate('<g:decorate>http://www.grails.org</g:decorate>') == '<p><a href="http://www.grails.org">http://www.grails.org</a></p>'
         assert applyTemplate('<g:decorate>https://www.google.com</g:decorate>') == '<p><a href="https://www.google.com">https://www.google.com</a></p>'
     }
+
+    void testNlBr() {
+        assert applyTemplate('<g:decorate>Row 1\nRow 2\nRow 3</g:decorate>') == '<p>Row 1\nRow 2\nRow 3</p>'
+        assert applyTemplate('<g:decorate nlbr="true">Row 1\nRow 2\nRow 3</g:decorate>') == '<p>Row 1<br/>\nRow 2<br/>\nRow 3</p>'
+    }
 }

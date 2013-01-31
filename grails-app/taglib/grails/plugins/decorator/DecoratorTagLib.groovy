@@ -52,6 +52,10 @@ class DecoratorTagLib {
             markup = decorator.decorate(markup, attrs)
         }
 
+        if(attrs.nlbr) {
+            markup = markup.replaceAll('\n', '<br/>\n')
+        }
+
         // Render final markup.
         out << markup
     }
