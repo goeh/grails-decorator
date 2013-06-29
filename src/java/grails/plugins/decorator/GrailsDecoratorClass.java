@@ -32,4 +32,6 @@ public interface GrailsDecoratorClass extends InjectableGrailsClass {
     public static final String TYPE = "Decorator";
 
     String decorate(String markup, Map params);
+
+    boolean getEnabled();
 }

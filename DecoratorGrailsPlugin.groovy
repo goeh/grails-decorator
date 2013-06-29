@@ -20,7 +20,7 @@ import grails.spring.BeanBuilder
 
 class DecoratorGrailsPlugin {
     // the plugin version
-    def version = "0.5.4"
+    def version = "1.0"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "1.3 > *"
     // the other plugins this plugin depends on
@@ -55,22 +55,10 @@ class DecoratorGrailsPlugin {
 <p>Custom decorator artefacts can be placed in grails-app/decorators</p>
 '''
 
-    // URL to the plugin's documentation
     def documentation = "http://grails.org/plugin/decorator"
-
-    // License: one of 'APACHE', 'GPL2', 'GPL3'
     def license = "APACHE"
-
-    // Details of company behind the plugin (if there is one)
     def organization = [ name: "Technipelago AB", url: "http://www.technipelago.se/" ]
-
-    // Any additional developers beyond the author specified above.
-//    def developers = [ [ name: "Joe Bloggs", email: "joe@bloggs.net" ]]
-
-    // Location of the plugin's issue tracker.
     def issueManagement = [ system: "github", url: "https://github.com/goeh/grails-decorate/issues" ]
-
-    // Online location of the plugin's browseable source code.
     def scm = [ url: "https://github.com/goeh/grails-decorate" ]
 
     def doWithSpring = {

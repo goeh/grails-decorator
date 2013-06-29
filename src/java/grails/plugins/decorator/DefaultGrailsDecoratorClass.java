@@ -19,6 +19,7 @@ package grails.plugins.decorator;
 
 import java.util.Map;
 
+import groovy.lang.MetaClass;
 import org.codehaus.groovy.grails.commons.AbstractInjectableGrailsClass;
 
 /**
@@ -36,4 +37,12 @@ public class DefaultGrailsDecoratorClass extends AbstractInjectableGrailsClass i
         return (String)getMetaClass().invokeMethod(getReferenceInstance(), DECORATE, new Object[]{markup, params});
     }
 
+    public boolean getEnabled() {
+        MetaClass mc = getMetaClass();
+        Object ri = getReferenceInstance();
+        if(mc.hasProperty(ri, "enabled") != null) {
+            return ((Boolean)mc.invokeMethod(ri, "getEnabled", new Object[]{})).booleanValue();
+        }
+        return true;
+    }
 }

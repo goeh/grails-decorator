@@ -33,9 +33,17 @@ class DecoratorTagLibTests extends GroovyPagesTestCase {
         def list = grailsApplication.decoratorClasses*.propertyName
         assert list.contains('abbreviateDecorator')
         assert list.contains('jiraDecorator')
-        assert list.contains('markdownDecorator')
         assert list.contains('telephoneDecorator')
         assert list.contains('urlDecorator')
+    }
+
+    void testEnabledClasses() {
+        def list = grailsApplication.decoratorClasses.findAll { it.enabled }*.propertyName
+        assert list.contains('abbreviateDecorator')
+        assert list.contains('telephoneDecorator')
+        assert list.contains('urlDecorator')
+
+        assert !list.contains('jiraDecorator')
     }
 
     void testEmptyBody() {
@@ -43,35 +51,31 @@ class DecoratorTagLibTests extends GroovyPagesTestCase {
     }
 
     void testAbbreviate() {
-        assert applyTemplate('<g:decorate max="20" exclude="markdown">The quick brown fox jumps over the lazy dog.</g:decorate>') == "The quick brown f..."
+        assert applyTemplate('<g:decorate max="20">The quick brown fox jumps over the lazy dog.</g:decorate>') == "The quick brown f..."
         assert applyTemplate('<g:decorate max="\${20}" include="abbreviate">The quick brown fox jumps over the lazy dog.</g:decorate>') == "The quick brown f..."
-        assert applyTemplate('<g:decorate exclude="markdown" encode="HTML"><script>alert("buuuh!")</script></g:decorate>') == '&lt;script&gt;alert(&quot;buuuh!&quot;)&lt;/script&gt;'
-    }
-
-    void testMarkdown() {
-        assert applyTemplate('<g:decorate>The quick brown **fox** jumps over the lazy **dog**.</g:decorate>') == "<p>The quick brown <strong>fox</strong> jumps over the lazy <strong>dog</strong>.</p>"
+        assert applyTemplate('<g:decorate encode="HTML"><script>alert("buuuh!")</script></g:decorate>') == '&lt;script&gt;alert(&quot;buuuh!&quot;)&lt;/script&gt;'
     }
 
     void testJira() {
-        assert applyTemplate('<g:decorate exclude="url">I think GRAILS-1234 is related to GROOVY-666.</g:decorate>') == '<p>I think <a href="http://jira.grails.org/browse/GRAILS-1234">GRAILS-1234</a> is related to <a href="http://jira.codehaus.org/browse/GROOVY-666">GROOVY-666</a>.</p>'
+        assert applyTemplate('<g:decorate include="jira">I think GRAILS-1234 is related to GROOVY-666.</g:decorate>') == 'I think <a href="http://jira.grails.org/browse/GRAILS-1234">GRAILS-1234</a> is related to <a href="http://jira.codehaus.org/browse/GROOVY-666">GROOVY-666</a>.'
     }
 
     void testTelephone() {
-        assert applyTemplate('<g:decorate>Tel: 08-123456</g:decorate>') == '<p>Tel: <a href="tel:08123456">08-123456</a></p>'
-        assert applyTemplate('<g:decorate>H 055-1234567</g:decorate>') == '<p>H <a href="tel:0551234567">055-1234567</a></p>'
-        assert applyTemplate('<g:decorate>CC 1055-1234567</g:decorate>') == '<p>CC 1055-1234567</p>'
-        assert applyTemplate('<g:decorate>W 31 55 66 77 88</g:decorate>') == '<p>W 31 55 66 77 88</p>'
-        assert applyTemplate('<g:decorate>Phone:031 55 66 77 88</g:decorate>') == '<p>Phone:<a href="tel:03155667788">031 55 66 77 88</a></p>'
+        assert applyTemplate('<g:decorate>Tel: 08-123456</g:decorate>') == 'Tel: <a href="tel:08123456">08-123456</a>'
+        assert applyTemplate('<g:decorate>H 055-1234567</g:decorate>') == 'H <a href="tel:0551234567">055-1234567</a>'
+        assert applyTemplate('<g:decorate>CC 1055-1234567</g:decorate>') == 'CC 1055-1234567'
+        assert applyTemplate('<g:decorate>W 31 55 66 77 88</g:decorate>') == 'W 31 55 66 77 88'
+        assert applyTemplate('<g:decorate>Phone:031 55 66 77 88</g:decorate>') == 'Phone:<a href="tel:03155667788">031 55 66 77 88</a>'
     }
 
     void testUrl() {
-        assert applyTemplate('<g:decorate>www.grails.org</g:decorate>') == '<p><a href="http://www.grails.org">www.grails.org</a></p>'
-        assert applyTemplate('<g:decorate>http://www.grails.org</g:decorate>') == '<p><a href="http://www.grails.org">http://www.grails.org</a></p>'
-        assert applyTemplate('<g:decorate>https://www.google.com</g:decorate>') == '<p><a href="https://www.google.com">https://www.google.com</a></p>'
+        assert applyTemplate('<g:decorate>www.grails.org</g:decorate>') == '<a href="http://www.grails.org">www.grails.org</a>'
+        assert applyTemplate('<g:decorate>http://www.grails.org</g:decorate>') == '<a href="http://www.grails.org">http://www.grails.org</a>'
+        assert applyTemplate('<g:decorate>https://www.google.com</g:decorate>') == '<a href="https://www.google.com">https://www.google.com</a>'
     }
 
     void testNlBr() {
-        assert applyTemplate('<g:decorate>Row 1\nRow 2\nRow 3</g:decorate>') == '<p>Row 1\nRow 2\nRow 3</p>'
-        assert applyTemplate('<g:decorate nlbr="true">Row 1\nRow 2\nRow 3</g:decorate>') == '<p>Row 1<br/>\nRow 2<br/>\nRow 3</p>'
+        assert applyTemplate('<g:decorate>Row 1\nRow 2\nRow 3</g:decorate>') == 'Row 1\nRow 2\nRow 3'
+        assert applyTemplate('<g:decorate nlbr="true">Row 1\nRow 2\nRow 3</g:decorate>') == 'Row 1<br/>\nRow 2<br/>\nRow 3'
     }
 }

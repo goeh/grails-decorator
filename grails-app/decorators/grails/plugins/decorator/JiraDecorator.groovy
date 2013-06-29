@@ -19,11 +19,13 @@ import java.util.regex.Pattern
 
 class JiraDecorator {
 
-    def grailsApplication
-
     private static final Pattern PATTERN = ~/([A-Z0-9_]+)\-(\d{1,5})/
 
-    Map projects = null
+    def grailsApplication
+
+    def enabled = false
+
+    private Map projects = null
 
     String decorate(String markup, Map params) {
         if (projects == null) {

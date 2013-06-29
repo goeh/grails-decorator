@@ -7,22 +7,22 @@ grails.project.target.level = 1.6
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
-        // uncomment to disable ehcache
-        // excludes 'ehcache'
     }
-    log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
+    log "warn"
+    legacyResolve false
     repositories {
         grailsHome()
         grailsCentral()
         mavenCentral()
     }
     dependencies {
-        compile "org.markdownj:markdownj:0.3.0-1.0.2b4"
     }
 
     plugins {
         build(":tomcat:$grailsVersion",
-              ":release:2.0.4") {
+                ":release:2.2.1",
+                ":rest-client-builder:1.0.3"
+        ) {
             export = false
         }
     }

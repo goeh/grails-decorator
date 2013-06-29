@@ -36,16 +36,19 @@ class DecoratorTagLib {
             exclude = [exclude]
         }
 
+        def disabled = grailsApplication.decoratorClasses.findAll{!it.enabled}*.propertyName.collect{it - 'Decorator'}
+        if(disabled) {
+            exclude.addAll(disabled)
+        }
+
         // Build collection of decorators to include.
         def include = attrs.include ?: grailsApplication.config.decorator.include
         if(! include) {
-            include = grailsApplication.decoratorClasses*.propertyName.collect{it - 'Decorator'}
+            include = grailsApplication.decoratorClasses*.propertyName.collect{it - 'Decorator'}.findAll{!exclude.contains(it)}
         }
         if(!(include instanceof Collection)) {
             include = [include]
         }
-        include = include.findAll{!exclude.contains(it)}
-
         // Apply decorators.
         for(dc in include) {
             def decorator = grailsApplication.mainContext.getBean(dc + 'Decorator')
