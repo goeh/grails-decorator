@@ -39,11 +39,11 @@ My telephone number is \<a href="tel:555123456"> 555-123456 \</a>
 # Configuration
 All installed decorators except `jiraDecorator` are applied by default when you use the `<g:decorate/>` tag.
 
-You can limit the number of decorators applied by default with the 'decorator.include' parameter.
+You can limit the number of decorators applied by default with the `decorator.include` parameter.
 
     decorator.include = ['abbreviate']
 
-You can exclude decorators applied by default with the 'decorator.exclude' parameter.
+You can exclude decorators applied by default with the `decorator.exclude` parameter.
 
     decorator.exclude = ['telephone']
 
