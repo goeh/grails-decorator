@@ -20,17 +20,17 @@ The quick brown f...
 ##URL decorator
     <g:decorate>www.grails.org</g:decorate>
 
-\<a href="http://www.grails.org">www.grails.org\</a>
+\<a href="http://www.grails.org"> www.grails.org \</a>
 
 ##JIRA decorator
     <g:decorate>Please see GRAILS-1234 for more information.</g:decorate>
 
-Please see \<a href="http://jira.grails.org/browse/GRAILS-1234">GRAILS-1234\</a> for more information.
+Please see \<a href="http://jira.grails.org/browse/GRAILS-1234"> GRAILS-1234 \</a> for more information.
 
 ##Phone decorator
     <g:decorate>My telephone number is 555-123456</g:decorate>
 
-My telephone number is \<a href="tel:555123456">555-123456\</a>
+My telephone number is \<a href="tel:555123456"> 555-123456 \</a>
 
 # Configuration
 All installed decorators are applied by default when you use the '<g:decorate>' tag.
