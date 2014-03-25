@@ -37,7 +37,7 @@ Please see \<a href="http://jira.grails.org/browse/GRAILS-1234"> GRAILS-1234 \</
 My telephone number is \<a href="tel:555123456"> 555-123456 \</a>
 
 # Configuration
-All installed decorators are applied by default when you use the '<g:decorate>' tag.
+All installed decorators except `jiraDecorator` are applied by default when you use the `<g:decorate/>` tag.
 
 You can limit the number of decorators applied by default with the 'decorator.include' parameter.
 
@@ -48,7 +48,7 @@ You can exclude decorators applied by default with the 'decorator.exclude' param
     decorator.exclude = ['telephone']
 
 # Custom decorators
-You can provide your own decorators. Just put a Groovy class in grails-app/decorators with a class name that ends with **Decorator**.
+You can provide your own decorators. Just put a Groovy class in grails-app/decorators with a class name that ends with **Decorator** and implement the `String decorate(String, Map)` method.
 
     class MyDecorator {
 
@@ -58,7 +58,6 @@ You can provide your own decorators. Just put a Groovy class in grails-app/decor
         String decorate(String markup, Map params) {
             markup.replaceAll(/\*([\w\s]+)\*/){s, sentence -> '<strong>' + sentence + '</strong>' }
         }
-
     }
 
 # See also
