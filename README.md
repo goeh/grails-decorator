@@ -65,3 +65,6 @@ You can provide your own decorators. Just put a Groovy class in grails-app/decor
 ## Markdown decorator
 The [Markdown Decorator](https://github.com/goeh/grails-decorator-markdown) plugin is an example of an extension plugin that adds Markdown syntax support.
 
+## Asciidoctor decorator
+The [Asciidoctor Decorator](https://github.com/goeh/grails-decorator-asciidoctor) plugin is an example of an extension plugin that adds Asciidoctor syntax support.
+
