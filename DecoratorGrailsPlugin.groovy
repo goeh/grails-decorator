@@ -19,13 +19,9 @@ import grails.plugins.decorator.DecoratorArtefactHandler
 import grails.spring.BeanBuilder
 
 class DecoratorGrailsPlugin {
-    // the plugin version
     def version = "1.0"
-    // the version or versions of Grails the plugin is designed for
     def grailsVersion = "1.3 > *"
-    // the other plugins this plugin depends on
     def dependsOn = [:]
-    // resources that are excluded from plugin packaging
     def pluginExcludes = [
         "grails-app/views/error.gsp"
     ]
@@ -35,7 +31,6 @@ class DecoratorGrailsPlugin {
             "file:./plugins/*/grails-app/decorators/**/*Decorator.groovy"
     ]
     def artefacts = [new DecoratorArtefactHandler()]
-
     def title = "Markup Decorator"
     def author = "Goran Ehrsson"
     def authorEmail = "goran@technipelago.se"
@@ -69,10 +64,6 @@ class DecoratorGrailsPlugin {
                 bean.autowire = "byName"
             }
         }
-    }
-
-    def doWithDynamicMethods = { ctx ->
-        // TODO Implement registering dynamic methods to classes (optional)
     }
 
     def doWithApplicationContext = { applicationContext ->
