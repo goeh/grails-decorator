@@ -10,7 +10,11 @@ The plugin provides standard decorators for:
 
 -----
 
-# Examples
+# Usage Examples
+
+In the following examples the tag body is hard coded to make it easier to see the result.
+Normally you will have a variable with dynamic information from a database, etc.
+like this `<g:decorate>${user.profile}</g:decorate>`.
 
 ##Abbreviation decorator
     <g:decorate max="20">The quick brown fox jumps over the lazy dog</g:decorate>
