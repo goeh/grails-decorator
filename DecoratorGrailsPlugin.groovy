@@ -35,19 +35,19 @@ class DecoratorGrailsPlugin {
     def author = "Goran Ehrsson"
     def authorEmail = "goran@technipelago.se"
     def description = '''\
-<p>Use pluggable decorators to modify markup in GSP pages.</p>
+Use pluggable decorators to modify content in GSP pages.
 
-<p>Examples</p>
+Examples
 
-<p><strong>Abbreviation decorator</strong></p>
-<pre><g:decorate max="20">The quick brown fox jumps over the lazy dog</g:decorate></pre>
-<p>The quick brown f...</p>
+Abbreviation decorator
+<g:decorate max="20">The quick brown fox jumps over the lazy dog</g:decorate>
+The quick brown f...
 
-<p><strong>URL decorator</strong></p>
-<pre><g:decorate>www.grails.org</g:decorate></pre>
-<p>&lt;a href="http://www.grails.org">www.grails.org&lt;/a></p>
+URL decorator
+<g:decorate>Please visit www.grails.org for more information</g:decorate>
+Please visit <a href="http://www.grails.org">www.grails.org</a> for more information
 
-<p>Custom decorator artefacts can be placed in grails-app/decorators</p>
+Custom decorator artefacts can be placed in grails-app/decorators
 '''
 
     def documentation = "https://github.com/goeh/grails-decorator"
