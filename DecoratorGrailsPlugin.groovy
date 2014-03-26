@@ -50,11 +50,11 @@ class DecoratorGrailsPlugin {
 <p>Custom decorator artefacts can be placed in grails-app/decorators</p>
 '''
 
-    def documentation = "http://grails.org/plugin/decorator"
+    def documentation = "https://github.com/goeh/grails-decorator"
     def license = "APACHE"
     def organization = [ name: "Technipelago AB", url: "http://www.technipelago.se/" ]
-    def issueManagement = [ system: "github", url: "https://github.com/goeh/grails-decorate/issues" ]
-    def scm = [ url: "https://github.com/goeh/grails-decorate" ]
+    def issueManagement = [ system: "github", url: "https://github.com/goeh/grails-decorator/issues" ]
+    def scm = [ url: "https://github.com/goeh/grails-decorator" ]
 
     def doWithSpring = {
         // Configure decorators
