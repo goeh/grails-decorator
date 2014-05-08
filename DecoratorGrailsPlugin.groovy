@@ -19,7 +19,7 @@ import grails.plugins.decorator.DecoratorArtefactHandler
 import grails.spring.BeanBuilder
 
 class DecoratorGrailsPlugin {
-    def version = "1.0"
+    def version = "1.1"
     def grailsVersion = "1.3 > *"
     def dependsOn = [:]
     def pluginExcludes = [

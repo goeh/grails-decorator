@@ -21,6 +21,10 @@ like this `<g:decorate>${user.profile}</g:decorate>`.
 
 The quick brown f...
 
+    <g:decorate max="30" middle=".....">The quick brown fox jumps over the lazy dog</g:decorate>
+
+The quick brown.....lazy dog
+
 ##URL decorator
     <g:decorate>www.grails.org</g:decorate>
 
@@ -68,3 +72,6 @@ The [Markdown Decorator](https://github.com/goeh/grails-decorator-markdown) plug
 ## Asciidoctor decorator
 The [Asciidoctor Decorator](https://github.com/goeh/grails-decorator-asciidoctor) plugin is an example of an extension plugin that adds Asciidoctor syntax support.
 
+## Release Notes
+1.0 2014-03-26 Initial public release
+1.1 2014-05-08 The abbreviate decorator now takes an optional parameter `middle`

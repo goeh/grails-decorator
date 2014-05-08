@@ -52,6 +52,7 @@ class DecoratorTagLibTests extends GroovyPagesTestCase {
 
     void testAbbreviate() {
         assert applyTemplate('<g:decorate max="20">The quick brown fox jumps over the lazy dog.</g:decorate>') == "The quick brown f..."
+        assert applyTemplate('<g:decorate max="30" middle="...">The quick brown fox jumps over the lazy dog.</g:decorate>') == "The quick brow...the lazy dog."
         assert applyTemplate('<g:decorate max="\${20}" include="abbreviate">The quick brown fox jumps over the lazy dog.</g:decorate>') == "The quick brown f..."
         assert applyTemplate('<g:decorate encode="HTML"><script>alert("buuuh!")</script></g:decorate>') == '&lt;script&gt;alert(&quot;buuuh!&quot;)&lt;/script&gt;'
     }

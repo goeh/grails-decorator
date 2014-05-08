@@ -19,6 +19,16 @@ import org.apache.commons.lang.StringUtils
 
 class AbbreviateDecorator {
     String decorate(String markup, Map params) {
-        params.max ? StringUtils.abbreviate(markup, params.offset ? Integer.valueOf(params.offset) : 0, Integer.valueOf(params.max)) : markup
+        String result
+        if(params.max) {
+            if(params.middle) {
+                result = StringUtils.abbreviateMiddle(markup, params.middle, Integer.valueOf(params.max))
+            } else {
+                result = StringUtils.abbreviate(markup, params.offset ? Integer.valueOf(params.offset) : 0, Integer.valueOf(params.max))
+            }
+        } else {
+            result = markup
+        }
+        return result
     }
 }
