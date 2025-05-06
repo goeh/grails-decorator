@@ -1,28 +1,31 @@
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
-grails.project.target.level = 1.6
-//grails.project.war.file = "target/${appName}-${appVersion}.war"
+grails.project.target.level = 1.6 
 
+grails.project.fork = [
+        //  compile: [maxMemory: 256, minMemory: 64, debug: false, maxPerm: 256, daemon:true],
+        test: false,
+        run: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
+        war: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
+        console: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256]
+]       
+    
+grails.project.dependency.resolver = "maven"
+        
 grails.project.dependency.resolution = {
-    // inherit Grails' default dependencies
-    inherits("global") {
-    }
+    inherits("global") {}
     log "warn"
     legacyResolve false
-    repositories {
-        grailsHome()
+    repositories { 
         grailsCentral()
         mavenCentral()
-    }
+    }   
     dependencies {
     }
-
     plugins {
-        build(":tomcat:$grailsVersion",
-                ":release:2.2.1",
-                ":rest-client-builder:1.0.3"
-        ) {
+        build(":release:3.1.2",
+                ":rest-client-builder:2.1.1") {
             export = false
         }
     }
